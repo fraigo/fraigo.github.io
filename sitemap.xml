@@ -8,7 +8,7 @@
     <priority>1.0</priority>
     <image:image>
     <image:loc>
-    http://fraigo.github.io/git_tutorial/
+    https://fraigo.github.io/git_tutorial/images/github-register.png
     </image:loc>
     <image:caption>Git Tutorial by Francisco Igor</image:caption>
     <image:title>Git Tutorial by Francisco Igor</image:title>
