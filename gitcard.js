@@ -5,28 +5,32 @@ Vue.component("gitcard",{
         "image"
     ],
     template:`
-  <v-flex xs12 sm6 pa-1 v-if="repo.has_pages">
+  <v-flex xs12 sm6 px-2 mt-2>
+   
     <v-card>
-      <v-card-media :src="image" height="160px">
+      <v-card-media 
+        v-if="repo.image"
+        style="background-position: top center"
+        :src="repo.image" height="120px">
       </v-card-media>
       <v-card-title primary-title>
         <div>
           <h3 class="headline mb-0">{{repo.name}}</h3>
           <div>
-            <i >{{repo.html_url}}</i>
+            <i ><a :href="repo.html_url">{{repo.html_url}}</a></i>
             <div style="height:50px;overflow:hidden">
             {{repo.description}}
             </div>
-            <div style="height:16px;overflow:hidden">
-            <small v-if="repo.license">{{repo.license.name}}</small>
-            <small v-if="repo.license">{{repo.language}}</small>
+            <div style="height:36px;overflow:hidden">
+            <v-chip small v-if="repo.license">{{repo.license.name}}</v-chip>
+            <v-chip small v-if="repo.language">{{repo.language}}</v-chip>
             </div>
           </div>
         </div>
       </v-card-title>
       <v-card-actions>
-        <v-btn flat color="orange">GitHub Repo</v-btn>
-        <v-btn v-if="repo.has_pages" @click="openPage(repo.name)" flat color="orange">GitHub Pages</v-btn>
+        <v-btn flat color="orange" @click="openPage(repo.html_url)">GitHub Repo</v-btn>
+        <v-btn flat color="orange" v-if="repo.has_pages" @click="openPage(repo.name)" >Demo / Preview</v-btn>
       </v-card-actions>
     </v-card>
   </v-flex>

@@ -20,24 +20,39 @@
   <div id="app" style="display:none">
     <v-app>
       <v-content>
-        <v-container>
-          <v-toolbar>
-            <v-toolbar-title>Francisco Igor</v-toolbar-title>
+        <v-container >
+          <v-toolbar fixed>
+            <a href="https://github.com/fraigo?tab=repositories" target="_blank" >
+              <img src="images/github.png" height="48">
+            </a>
+            <v-toolbar-title style="line-height:1.2em">
+              Francisco Igor
+              <br>
+              <small>GitHub Projects</small>
+            </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items >
-              <v-btn flat>Projects</v-btn>
-              <v-btn flat>Personal</v-btn>
+              <v-btn flat @click="hash=''">Featured<br>Projects</v-btn>
+              <v-btn flat @click="hash='all'">All<br>Projects</v-btn>
             </v-toolbar-items>
           </v-toolbar>
-          <v-layout row wrap >
-          <gitcard
+          <v-layout row wrap v-if="hash==''">
+            <gitcard
             v-for="(repo,index) in repos"
             :key="index"
             :repo="repo"
             >
-          </gitcard>
-        </v-layout>
-        </v-container>
+            </gitcard>
+          </v-layout>
+          <v-layout row wrap  v-if="hash=='all'">
+              <gitcard
+              v-for="(repo,index) in allRepos"
+              :key="index"
+              :repo="repo"
+              >
+              </gitcard>
+            </v-layout>
+          </v-container>
       </v-content>
     </v-app>
   </div>
@@ -46,24 +61,36 @@
   <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.0"></script>  
   <script src="gitcard.js"></script>
+  <script src="config.js"></script>
   <script>
     var app=new Vue({ 
       el: '#app' ,
       data:{
-        repos:[]
+        repos:[],
+        allRepos:[],
+        hash:''
       },
       created: function(){
         document.getElementById("app").style.display='';
+        this.$http.get('https://api.github.com/users/fraigo/repos?sort=updated').then(function(response) {
+          this.allRepos=response.data;
+          for(var index in response.data){
+            var repo=JSON.parse(JSON.stringify(response.data[index]));
+            
+            if (myrepos[repo.name]){
+              repo.image=myrepos[repo.name].image;
+              this.repos.push(repo);
+            }
+          }
+        })
       },
       methods: {
-        refreshMessage: function() {
-          this.$http.get('https://api.github.com/users/fraigo/repos?sort=updated').then(function(response) {
-            this.repos = (response.data);
-          });
-        }
       }
     })
-    app.refreshMessage();
+    window.onhashchange=function(ev){
+      var hash=document.location.hash;
+      console.log(hash);
+    }
   </script>
 </body>
 </html>
