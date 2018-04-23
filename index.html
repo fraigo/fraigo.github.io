@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Francisco Igor - GitHub Pages</title>
   <meta property="og:title" content="Francisco Igor" />
   <meta property="og:locale" content="en_US" />
   <meta name="description" content="GitHub page of Francisco Igor" />
@@ -12,17 +12,58 @@
   <script type="application/ld+json">
   {"name":"Francisco Igor","description":"GitHub page of Francisco Igor","author":"Francisco Igor","@type":"WebSite","url":"https://fraigo.github.io/","image":null,"publisher":null,"headline":"Francisco Igor Website","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
   <link rel="stylesheet" href="style.css" >
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 <body>
-
-<H1>Francisco Igor</H1>
-
-<p>
-GitHub page of Francisco Igor.
-</p>
-
-<a href="https://github.com/fraigo/">https://github.com/fraigo/</a>
-
-
+  <div id="app" style="display:none">
+    <v-app>
+      <v-content>
+        <v-container>
+          <v-toolbar>
+            <v-toolbar-title>Francisco Igor</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items >
+              <v-btn flat>Projects</v-btn>
+              <v-btn flat>Personal</v-btn>
+            </v-toolbar-items>
+          </v-toolbar>
+          <v-layout row wrap >
+          <gitcard
+            v-for="(repo,index) in repos"
+            :key="index"
+            :repo="repo"
+            >
+          </gitcard>
+        </v-layout>
+        </v-container>
+      </v-content>
+    </v-app>
+  </div>
+ 
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.0"></script>  
+  <script src="gitcard.js"></script>
+  <script>
+    var app=new Vue({ 
+      el: '#app' ,
+      data:{
+        repos:[]
+      },
+      created: function(){
+        document.getElementById("app").style.display='';
+      },
+      methods: {
+        refreshMessage: function() {
+          this.$http.get('https://api.github.com/users/fraigo/repos?sort=updated').then(function(response) {
+            this.repos = (response.data);
+          });
+        }
+      }
+    })
+    app.refreshMessage();
+  </script>
 </body>
 </html>
