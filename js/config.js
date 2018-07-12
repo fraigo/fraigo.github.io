@@ -1,5 +1,5 @@
-
-myrepos = 
+var myUser = "fraigo";
+var myRepos = 
 {
     "vuetify-cordova" : {
         image:"images/vuetify-cordova.jpg"

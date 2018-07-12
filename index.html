@@ -28,7 +28,7 @@
 
   <script type="application/ld+json">
   {"name":"Francisco Igor","description":"GitHub page of Francisco Igor","author":"Francisco Igor","@type":"WebSite","url":"https://fraigo.github.io/","image":null,"publisher":null,"headline":"Francisco Igor Website","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
-  <link rel="stylesheet" href="style.css" >
+  <link rel="stylesheet" href="css/style.css" >
   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
   <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
@@ -74,11 +74,11 @@
     </v-app>
   </div>
  
-  <script src="https://unpkg.com/vue/dist/vue.js"></script>
-  <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+  <script src="https://unpkg.com/vuetify/dist/vuetify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.0"></script>  
-  <script src="gitcard.js"></script>
-  <script src="config.js"></script>
+  <script src="js/gitcard.js"></script>
+  <script src="js/config.js"></script>
   <script>
     var app=new Vue({ 
       el: '#app' ,
@@ -89,13 +89,13 @@
       },
       created: function(){
         document.getElementById("app").style.display='';
-        this.$http.get('https://api.github.com/users/fraigo/repos?sort=updated').then(function(response) {
+        this.$http.get('https://api.github.com/users/'+myUser+'/repos?sort=updated').then(function(response) {
           this.allRepos=response.data;
           for(var index in response.data){
             var repo=JSON.parse(JSON.stringify(response.data[index]));
             
-            if (myrepos[repo.name]){
-              repo.image=myrepos[repo.name].image;
+            if (myRepos[repo.name]){
+              repo.image=myRepos[repo.name].image;
               this.repos.push(repo);
             }
           }
