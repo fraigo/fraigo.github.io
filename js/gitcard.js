@@ -22,14 +22,14 @@ Vue.component("gitcard",{
             {{repo.description}}
             </div>
             <div style="height:36px;overflow:hidden">
-            <v-chip small v-if="repo.license">{{repo.license.name}}</v-chip>
+            <v-chip small outline="true" olor="orange" v-if="repo.license">{{repo.license.name}}</v-chip>
             <v-chip small v-if="repo.language">{{repo.language}}</v-chip>
             </div>
           </div>
         </div>
       </v-card-title>
       <v-card-actions>
-        <v-btn flat color="orange" @click="openPage(repo.html_url)">GitHub Repo</v-btn>
+        <v-btn flat color="blue" @click="openPage(repo.html_url)">GitHub Repo</v-btn>
         <v-btn flat color="orange" v-if="repo.has_pages" @click="openPage(getPage(repo.name))" >Demo / Preview</v-btn>
       </v-card-actions>
     </v-card>
