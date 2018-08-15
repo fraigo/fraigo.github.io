@@ -50,7 +50,7 @@
             <v-spacer></v-spacer>
             <v-toolbar-items >
               <v-btn flat @click="hash=''">Featured<br>Projects</v-btn>
-              <v-btn flat @click="hash='all'">All<br>Projects</v-btn>
+              <v-btn flat @click="hash='all'">Personal<br>Projects</v-btn>
             </v-toolbar-items>
           </v-toolbar>
           <v-layout row wrap v-if="hash==''">
@@ -64,6 +64,14 @@
           <v-layout row wrap  v-if="hash=='all'">
               <gitcard
               v-for="(repo,index) in allRepos"
+              :key="index"
+              :repo="repo"
+              >
+              </gitcard>
+            </v-layout>
+          <v-layout row wrap  v-if="hash=='forked'">
+              <gitcard
+              v-for="(repo,index) in forked"
               :key="index"
               :repo="repo"
               >
@@ -84,6 +92,7 @@
       el: '#app' ,
       data:{
         repos:[],
+        forked:[],
         allRepos:[],
         hash:''
       },
@@ -101,6 +110,8 @@
             }
             if (!repo.fork){
               this.allRepos.push(repo);
+            }else{
+              this.forked.push(repo);
             }
           }
         })
