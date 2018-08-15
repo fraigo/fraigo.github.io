@@ -89,7 +89,7 @@
       },
       created: function(){
         document.getElementById("app").style.display='';
-        this.$http.get('https://api.github.com/users/'+myUser+'/repos?sort=updated').then(function(response) {
+        this.$http.get('https://api.github.com/users/'+myUser+'/repos?sort=updated&per_page=100').then(function(response) {
           this.allRepos=response.data;
           for(var index in response.data){
             var repo=JSON.parse(JSON.stringify(response.data[index]));
