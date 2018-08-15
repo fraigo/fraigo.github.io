@@ -115,7 +115,8 @@
         languages:[],
         languageSection:{},
         languageFilter:null,
-        hash:'featured'
+        hash:'featured',
+        user:myUser
       },
       created: function(){
         document.getElementById("app").style.display='';
@@ -145,6 +146,7 @@
               languageSection[lang]["forked"]=true;
             }
           }
+          delete languageCount["null"];
           this.languages=Object.keys(languageCount);
           this.languages.sort(function(a,b){
             if (languageCount[a]>languageCount[b]){
