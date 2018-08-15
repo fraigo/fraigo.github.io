@@ -127,7 +127,8 @@
           var languageSection={};
           for(var index in response.data){
             var repo=JSON.parse(JSON.stringify(response.data[index]));
-            var lang=""+repo.language;
+            var lang=repo.language?repo.language:"Not detected";
+            repo.language=lang;
             if (!languageCount[lang]){
               languageCount[lang]=0;
               languageSection[lang]={};
@@ -146,7 +147,6 @@
               languageSection[lang]["forked"]=true;
             }
           }
-          delete languageCount["null"];
           this.languages=Object.keys(languageCount);
           this.languages.sort(function(a,b){
             if (languageCount[a]>languageCount[b]){
