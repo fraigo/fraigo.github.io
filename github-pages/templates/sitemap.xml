@@ -4,13 +4,13 @@
     http://${user}.github.io/
     </loc>
     <changefreq>weekly</changefreq>
-    <lastmod>$(date)</lastmod>
+    <lastmod>${date}</lastmod>
     <priority>1.0</priority>
     <image:image>
     <image:loc>
     https://${user}.github.io/images/github.png
     </image:loc>
-    <image:caption>${User} GitHub Pages </image:caption>
+    <image:caption>${Name} GitHub Pages </image:caption>
     <image:title>${Name} GitHub Pages </image:title>
     </image:image>
   </url>
