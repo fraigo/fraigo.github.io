@@ -1,17 +1,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>
-    http://.github.io/
+    http://fraigo.github.io/
     </loc>
     <changefreq>weekly</changefreq>
-    <lastmod>$(date)</lastmod>
+    <lastmod>2018-10-30T23:40:18.657Z</lastmod>
     <priority>1.0</priority>
     <image:image>
     <image:loc>
-    https://.github.io/images/github.png
+    https://fraigo.github.io/images/github.png
     </image:loc>
-    <image:caption>${User} GitHub Pages </image:caption>
-    <image:title> GitHub Pages </image:title>
+    <image:caption>Francisco Igor GitHub Pages </image:caption>
+    <image:title>Francisco Igor GitHub Pages </image:title>
     </image:image>
   </url>
 </urlset>

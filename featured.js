@@ -1,5 +1,14 @@
 var myRepos = 
 {
+    "code-practice" : {
+        image:"images/code-practice.png"
+    },
+    "ios-cards" : {
+        image:"images/ios-cards.png"
+    },
+    "AndroidHabitsApp" : {
+        image:"images/AndroidHabitsApp.png"
+    },
     "vuetify-cordova" : {
         image:"images/vuetify-cordova.jpg"
     },
