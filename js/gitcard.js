@@ -14,8 +14,8 @@ Vue.component("gitcard",{
     <v-card>
       <v-img 
         v-if="repo.image && !textonly"
-        style="background-position: top center"
-        :src="repo.image" height="120px">
+        class="card-image"
+        :src="repo.image" height="140px">
       </v-img>
       <v-card-title primary-title>
         <v-layout column >
