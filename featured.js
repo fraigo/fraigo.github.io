@@ -9,6 +9,9 @@ var myRepos =
     "AndroidHabitsApp" : {
         image:"images/AndroidHabitsApp.png"
     },
+    "AndroidMathContest" : {
+        image:"images/AndroidMathContest.png"
+    },
     "vuetify-cordova" : {
         image:"images/vuetify-cordova.jpg"
     },
