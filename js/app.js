@@ -36,7 +36,7 @@ var app=new Vue({
           languageCount[lang]++;
           if (myRepos[repo.name]){
             repo.image=myRepos[repo.name].image;
-            this.featuredRepos.push(repo);
+            myRepos[repo.name]=repo;
             languageSection[lang]["featuredRepos"]=true;
           }
           if (!repo.fork){
@@ -47,6 +47,8 @@ var app=new Vue({
             languageSection[lang]["forkedRepos"]=true;
           }
         }
+        this.featuredRepos=Object.values(myRepos);
+            
         this.languages=Object.keys(languageCount);
         this.languages.sort(function(a,b){
           if (languageCount[a]>languageCount[b]){
@@ -100,5 +102,6 @@ var app=new Vue({
   })
   window.onhashchange=function(ev){
     var hash=document.location.hash;
+    hash=hash.replace("%20"," ")
     app.setHash(hash);
   }

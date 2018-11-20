@@ -44,7 +44,7 @@
       ]
     }</script>
     <link rel="stylesheet" href="css/animate.css" >
-    <link rel="stylesheet" href="css/style.css" >
+    <link rel="stylesheet" href="css/style.css?${date}" >
   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
   <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
@@ -89,7 +89,7 @@
             @click="setFilter(lang)"
              >{{lang}}</v-chip>
           </v-layout>
-          <transition name="animate" enter-active-class="animated fadeIn">
+          <transition name="animate" enter-active-class="animated fadeIn" exit-active-class="animated fadeOut">
           <v-layout row wrap v-if="hash=='featuredRepos'" class="cardContainer">
             <gitcard
             v-for="(repo,index) in featuredRepos"
@@ -100,7 +100,7 @@
             </gitcard>
           </v-layout>
           </transition>
-          <transition name="animate" enter-active-class="animated fadeIn">
+          <transition name="animate" enter-active-class="animated fadeIn" exit-active-class="animated fadeOut">
           <v-layout row wrap  v-if="hash=='personalRepos'"  class="cardContainer">
               <gitcard
               v-for="(repo,index) in personalRepos"
@@ -112,7 +112,7 @@
               </gitcard>
             </v-layout>
           </transition>
-          <transition name="animate" enter-active-class="animated fadeIn">
+          <transition name="animate" enter-active-class="animated fadeIn" exit-active-class="animated fadeOut">
           <v-layout row wrap  v-if="hash=='forkedRepos'"  class="cardContainer">
               <gitcard
               v-for="(repo,index) in forkedRepos"
@@ -141,6 +141,6 @@
   <script src="featured.js"></script>
   <script src="js/gitcard.js"></script>
   <script src="js/config.js"></script>
-  <script src="js/app.js" ></script>
+  <script src="js/app.js?${date}" ></script>
 </body>
 </html>
