@@ -89,8 +89,7 @@
             @click="setFilter(lang)"
              >{{lang}}</v-chip>
           </v-layout>
-          <transition name="animate" enter-active-class="animated fadeIn" exit-active-class="animated fadeOut">
-          <v-layout row wrap v-if="hash=='featuredRepos'" class="cardContainer">
+          <transition-group v-if="hash=='featuredRepos'" tag="div" class="layout cardContainer row wrap" name="animate" enter-active-class="animated fadeIn" exit-active-class="animated fadeOut">
             <gitcard
             v-for="(repo,index) in featuredRepos"
             v-if="languageFilter==null || languageFilter==repo.language"
@@ -98,23 +97,19 @@
             :repo="repo"
             >
             </gitcard>
-          </v-layout>
-          </transition>
-          <transition name="animate" enter-active-class="animated fadeIn" exit-active-class="animated fadeOut">
-          <v-layout row wrap  v-if="hash=='personalRepos'"  class="cardContainer">
-              <gitcard
+          </transition-group>
+          <transition-group v-if="hash=='personalRepos'" tag="div" class="layout cardContainer row wrap" name="animate" enter-active-class="animated fadeIn" exit-active-class="animated fadeOut">
+            <gitcard
               v-for="(repo,index) in personalRepos"
               v-if="languageFilter==null || languageFilter==repo.language"
               :textonly="true"
               :key="index"
               :repo="repo"
               >
-              </gitcard>
-            </v-layout>
-          </transition>
-          <transition name="animate" enter-active-class="animated fadeIn" exit-active-class="animated fadeOut">
-          <v-layout row wrap  v-if="hash=='forkedRepos'"  class="cardContainer">
-              <gitcard
+            </gitcard>
+          </transition-group>
+          <transition-group v-if="hash=='forkedRepos'" tag="div" class="layout cardContainer row wrap" name="animate" enter-active-class="animated fadeIn" exit-active-class="animated fadeOut">
+            <gitcard
               v-for="(repo,index) in forkedRepos"
               v-if="languageFilter==null || languageFilter==repo.language"
               :textonly="true"
@@ -122,8 +117,7 @@
               :repo="repo"
               >
               </gitcard>
-            </v-layout>
-          </transition>
+          </transition-group>
           </v-container>
       </v-content>
     </v-app>
