@@ -6,6 +6,12 @@ var myRepos =
     "ios-cards" : {
         image:"images/ios-cards.png"
     },
+    "ios-googlemaps-ev-charge" : {
+        image: "images/ios-googlemaps-ev-charge.png"
+    },
+    "ios-cognitive-test":{
+        image: "images/ios-cognitive-test.png"
+    },
     "AndroidHabitsApp" : {
         image:"images/AndroidHabitsApp.png"
     },
