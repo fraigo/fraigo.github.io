@@ -35,15 +35,16 @@
       "url":"https://fraigo.github.io/",
       "publisher":"Francisco Igor",
       "headline":"Francisco Igor GitHub Projects Page",
-      "dateModified":"2018-11-02T18:16:10.056Z",
-      "datePublished":"2018-11-02T18:16:10.056Z",
+      "dateModified":"2018-11-20T18:36:56.616Z",
+      "datePublished":"2018-11-20T18:36:56.616Z",
       "sameAs":null,
       "@context":"http://schema.org",
       "image": [
         "images/github.png"
       ]
     }</script>
-  <link rel="stylesheet" href="css/style.css" >
+    <link rel="stylesheet" href="css/animate.css" >
+    <link rel="stylesheet" href="css/style.css" >
   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
   <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
@@ -68,9 +69,9 @@
               </v-layout>
             </v-flex>
             <v-flex py-2 xs-12 text-xs-center text-sm-right>
-              <v-btn flat large class="px-1" v-if="featuredRepos.length" @click="hash='featuredRepos'; languageFilter=null">Featured<br>Projects</v-btn>
-              <v-btn flat large class="px-1" @click="hash='personalRepos'; languageFilter=null">Personal<br>Projects</v-btn>
-              <v-btn flat large class="px-1" @click="hash='forkedRepos'; languageFilter=null">Forked<br>Projects</v-btn>
+              <v-btn flat large class="px-1" v-if="featuredRepos.length" @click="changeHash('featuredRepos')">Featured<br>Projects</v-btn>
+              <v-btn flat large class="px-1" @click="changeHash('personalRepos')">Personal<br>Projects</v-btn>
+              <v-btn flat large class="px-1" @click="changeHash('forkedRepos')">Forked<br>Projects</v-btn>
             </v-flex>
           </v-layout>
           <v-container >
@@ -78,17 +79,18 @@
             <v-chip small 
             color="white"
             :outline="languageFilter!=null"
-            @click="languageFilter=null"
+            @click="setFilter(null)"
              >All languages</v-chip>
             <v-chip small 
             color="white"
             v-for="(lang,index) in languages"
             v-if="languageSection[lang][hash]"
             :outline="languageFilter!=lang"
-            @click="languageFilter=lang"
+            @click="setFilter(lang)"
              >{{lang}}</v-chip>
           </v-layout>
-          <v-layout row wrap v-if="hash=='featuredRepos'">
+          <transition name="animate" enter-active-class="animated fadeIn">
+          <v-layout row wrap v-if="hash=='featuredRepos'" class="cardContainer">
             <gitcard
             v-for="(repo,index) in featuredRepos"
             v-if="languageFilter==null || languageFilter==repo.language"
@@ -97,7 +99,9 @@
             >
             </gitcard>
           </v-layout>
-          <v-layout row wrap  v-if="hash=='personalRepos'">
+          </transition>
+          <transition name="animate" enter-active-class="animated fadeIn">
+          <v-layout row wrap  v-if="hash=='personalRepos'"  class="cardContainer">
               <gitcard
               v-for="(repo,index) in personalRepos"
               v-if="languageFilter==null || languageFilter==repo.language"
@@ -107,7 +111,9 @@
               >
               </gitcard>
             </v-layout>
-          <v-layout row wrap  v-if="hash=='forkedRepos'">
+          </transition>
+          <transition name="animate" enter-active-class="animated fadeIn">
+          <v-layout row wrap  v-if="hash=='forkedRepos'"  class="cardContainer">
               <gitcard
               v-for="(repo,index) in forkedRepos"
               v-if="languageFilter==null || languageFilter==repo.language"
@@ -117,6 +123,7 @@
               >
               </gitcard>
             </v-layout>
+          </transition>
           </v-container>
       </v-content>
     </v-app>

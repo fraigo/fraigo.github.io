@@ -58,15 +58,47 @@ var app=new Vue({
           return 0;
         });
         this.languageSection=languageSection;
-        if (this.featuredRepos.length>0){
-            this.hash = 'featuredRepos';
+        var hash=document.location.hash.substring(1);
+        if (hash!=''){
+          this.setHash(hash)
+        }else{
+          if (this.featuredRepos.length>0){
+            this.changeHash('featuredRepos');
+          }else{
+            this.changeHash('personalRepos');
+          }
         }
+        
       })
     },
     methods: {
+      setHash:function(hash){
+        hash = hash.replace("#","")
+        var parts=hash.split("/")
+        this.hash=parts[0]
+        this.languageFilter=parts[1]
+      },
+      changeHash:function(hash){
+        hash = hash.replace("#","")
+        document.location="#"+hash
+      },
+      setFilter:function(filter){
+        var hash=document.location.hash;
+        hash = hash.replace("#","")
+        var parts=hash.split("/")
+        if (filter==null){
+          this.changeHash(parts[0])
+        }else{
+          this.changeHash(parts[0]+"/"+filter)
+        }
+        
+      }
+    },
+    mounted(){
+      
     }
   })
   window.onhashchange=function(ev){
     var hash=document.location.hash;
-    console.log(hash);
+    app.setHash(hash);
   }
