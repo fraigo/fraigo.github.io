@@ -1,3 +1,5 @@
+Vue.use(Vuetify);
+
 var app=new Vue({ 
     el: '#app' ,
     data:{
