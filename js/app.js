@@ -22,7 +22,7 @@ var app=new Vue({
             }
             document.title = this.userData.name + " - Github Page";
       });
-      this.$http.get('https://api.github.com/users/'+myUser+'/repos?sort=updated&per_page=100').then(function(response) {
+      this.$http.get('https://api.github.com/users/'+myUser+'/repos?sort=updated&per_page=200').then(function(response) {
         var tmpRepos=response.data;
         this.personalRepos=[];
         var languageCount={};
