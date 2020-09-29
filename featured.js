@@ -30,8 +30,8 @@ var myRepos =
     "meta-tags-generator" : {
         image:"images/meta-tags-generator.jpg"
     },
-    "tower-game":{
-        image:"images/tower-game.png"
+    "a-frame-example":{
+        image:"https://repository-images.githubusercontent.com/298230735/ab048380-0249-11eb-925e-02d64d7df5b8"
     },
     "image-resizer":{
         image:"images/image-resizer.png"
